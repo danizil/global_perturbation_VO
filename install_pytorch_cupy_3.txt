@@ -1,0 +1,8 @@
+conda create --name pytorch-cupy-3 pandas python=3.7 pip scipy
+conda activate pytorch-cupy-3
+conda install -c conda-forge cudatoolkit=11.1 cudnn opencv matplotlib tqdm
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
+conda install -c conda-forge cupy=8 kornia
+
+JtB6.Qrfab
+srun -c 2 --gres=gpu:1 --pty python run_attacks.py --seed 42 --model-name tartanvo_1914.pkl --test-dir "VO_adv_project_train_dataset_8_frames"  --max_traj_len 8 --batch-size 1 --worker-num 2 --save_csv --attack pgd --attack_k 100
